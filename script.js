@@ -22,6 +22,17 @@ regForm.onsubmit = async function(e) {
     });
 
     let result = await response.json();
+    console.log(result)
+    let errorArr = Object.values(result.errors);
+    console.log(errorArr.length)
+    let errorMsg = ''
 
-    confirm(result.message);
+    for(let i = 0; i < errorArr.length; i++)
+    {
+       // console.log(errorMsg += errorArr[i].errors[0].errorMessage + '\n');
+        errorMsg += errorArr[i].errors[0].errorMessage + '\n';
+
+    }
+
+    confirm(result.message + '\n' + errorMsg);
 }
